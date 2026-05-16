@@ -177,4 +177,28 @@ Sentry.setUser({
   }
 );`,
   },
+  {
+    concept: "Alertas",
+    title: "Alertas",
+    description:
+      "Sentry te avisa antes de que el usuario lo note. Configurá reglas para recibir notificaciones cuando algo sale mal.",
+    points: [
+      "Alertas por tasa de errores: si el 5% de las requests fallan en 10 min, te avisa",
+      "Alertas de performance: si el p95 de latencia supera 2s, se dispara",
+      "Canales: Slack, email, PagerDuty, webhooks y más",
+      "También podés configurar alertas por ausencia de eventos — si algo deja de pasar",
+    ],
+    actions: [],
+    code: `// El nivel de severidad influye en las alertas
+
+Sentry.captureMessage(
+  "Stock crítico en inventario",
+  "warning" // info | warning | error | fatal
+);
+
+// Las alertas se configuran en el dashboard:
+// → Si error_rate > 5% en 10 min → Slack
+// → Si p95 latency > 2000ms → PagerDuty
+// → Nuevo error en producción → Email`,
+  },
 ];
