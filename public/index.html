@@ -50,6 +50,21 @@
     .nav-controls { display: flex; align-items: center; gap: 0.75rem; }
     .counter { font-size: 0.82rem; color: var(--muted); min-width: 44px; text-align: center; }
 
+    .lang-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.2rem 0.65rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-btn:hover { background: var(--border); color: var(--text); }
+    .lang-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
     .nav-btn {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -195,6 +210,8 @@
       Sentry — Live Demo
     </div>
     <div class="nav-controls">
+      <button class="lang-btn" id="lang-en">EN</button>
+      <button class="lang-btn active" id="lang-es">ES</button>
       <span class="counter" id="counter">1 / 7</span>
       <button class="nav-btn" id="prev">←</button>
       <button class="nav-btn" id="next">→</button>
