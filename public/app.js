@@ -336,13 +336,7 @@ function render() {
     slideArea.innerHTML = `
       <div class="slide centered">
         <div class="speaker-card">
-          <div class="photo-placeholder">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.4">
-              <circle cx="12" cy="8" r="4"/>
-              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-            </svg>
-            <span>Your photo</span>
-          </div>
+          <img src="/assets/chris.jpeg" class="speaker-photo" alt="Speaker photo" />
           <div class="speaker-info">
             <p class="speaker-eyebrow">${slide.eyebrow}</p>
             <h1 class="speaker-name ph">[Your Name]</h1>
