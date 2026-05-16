@@ -5,12 +5,16 @@ export default function SpeakerSlide({ slide }) {
         <div className="speaker-photo" />
         <div className="speaker-info">
           <p className="speaker-eyebrow">{slide.eyebrow}</p>
-          <h1 className="speaker-name ph">[Your Name]</h1>
-          <p className="speaker-role ph">[Your Role / Title]</p>
-          <p className="speaker-company ph">[Your Company]</p>
+          <h1 className="speaker-name">Christian Caracach</h1>
+          <p className="speaker-role">Software Developer</p>
+          <p className="speaker-company">CodingIT / Tiny Health</p>
           <div className="speaker-divider" />
-          <p className="speaker-bio ph">[A short bio or tagline]</p>
-          <p className="speaker-handle ph">@[yourhandle]</p>
+          <p className="speaker-bio">
+            Software developer desde hace 3 años. Creador del Club de
+            Programación de Córdoba. Profesor de música. Músico. Me encanta
+            pararme al frente de gente y hablar de cosas
+          </p>
+          <p className="speaker-handle">@christiancaracach</p>
         </div>
       </div>
     </div>
