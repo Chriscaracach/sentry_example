@@ -4,24 +4,22 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import * as Sentry from '@sentry/react';
 import { fetchUsers, simulateCrash, simulateHandledError, simulateSlowOperation } from '../api.js';
 
-export default function DemoSlide({ slide, lang }) {
+export default function DemoSlide({ slide }) {
   const [entries, setEntries] = useState([]);
 
   const log = (message, type = 'ok') => {
     setEntries((prev) => [...prev, { message, type, ts: new Date().toLocaleTimeString() }]);
   };
 
-  const t = (en, es) => (lang === 'es' ? es : en);
-
   function throwUnhandledError() {
     Sentry.addBreadcrumb({ category: 'demo', message: 'Throwing unhandled error', level: 'warning' });
-    log(t('Throwing — check Sentry dashboard...', 'Lanzando — revisá el dashboard de Sentry...'), 'warn');
+    log('Lanzando error no controlado — revisá el dashboard de Sentry...', 'warn');
     setTimeout(() => { throw new Error('Unhandled frontend exception (demo)'); }, 0);
   }
 
   async function triggerUnhandledRejection() {
-    log(t('Triggering unhandled rejection...', 'Generando rechazo de promesa no controlado...'), 'warn');
-    await simulateCrash(); // not caught → unhandledrejection → Sentry
+    log('Generando rechazo de promesa no controlado...', 'warn');
+    await simulateCrash();
   }
 
   function triggerHandledError() {
@@ -32,7 +30,7 @@ export default function DemoSlide({ slide, lang }) {
         tags: { demo: 'handled-error' },
         extra: { hint: 'Caught manually via captureException' },
       });
-      log(t(`Caught & reported: ${err.message}`, `Capturado y reportado: ${err.message}`), 'warn');
+      log(`Capturado y reportado: ${err.message}`, 'warn');
     }
   }
 
@@ -44,38 +42,32 @@ export default function DemoSlide({ slide, lang }) {
         tags: { area: 'data-processing' },
         extra: { hint: 'Caught manually' },
       });
-      log(t(`Caught & reported: ${err.message}`, `Capturado y reportado: ${err.message}`), 'warn');
+      log(`Capturado y reportado: ${err.message}`, 'warn');
     }
   }
 
   function setUserAndError() {
     Sentry.setUser({ username: 'alice', email: 'alice@example.com' });
-    log(t('User set: alice — throwing in 300ms...', 'Usuario: alice — lanzando en 300ms...'), 'info');
+    log('Usuario: alice — lanzando error en 300ms...', 'info');
     setTimeout(() => {
-      log(t('Error fired — find alice in the Sentry event', 'Error lanzado — buscá a alice en el evento'), 'warn');
+      log('Error lanzado — buscá a alice en el evento de Sentry', 'warn');
       throw new Error('Error attributed to alice (demo)');
     }, 300);
   }
 
   async function addBreadcrumbAndFetch() {
     Sentry.addBreadcrumb({ category: 'ui', message: 'User clicked the fetch button', level: 'info' });
-    log(t('Breadcrumb added. Fetching users...', 'Breadcrumb agregado. Buscando usuarios...'), 'info');
+    log('Breadcrumb agregado. Buscando usuarios...', 'info');
     const users = await fetchUsers();
-    log(t(
-      `Fetched ${users.length} users. Click Step 2 — the error will carry this trail.`,
-      `${users.length} usuarios obtenidos. Hacé clic en el Paso 2 — el error llevará este breadcrumb.`
-    ), 'ok');
+    log(`${users.length} usuarios obtenidos. Hacé clic en el Paso 2 — el error llevará este breadcrumb.`, 'ok');
   }
 
   async function triggerSlowOperation() {
-    log(t('Starting span...', 'Iniciando span...'), 'info');
+    log('Iniciando span...', 'info');
     const start = Date.now();
     await Sentry.startSpan({ name: 'slow-operation', op: 'function' }, async () => {
       await simulateSlowOperation();
-      log(t(
-        `Done in ${Date.now() - start}ms — check the Performance tab in Sentry`,
-        `Listo en ${Date.now() - start}ms — revisá la pestaña Performance en Sentry`
-      ), 'ok');
+      log(`Listo en ${Date.now() - start}ms — revisá la pestaña Performance en Sentry`, 'ok');
     });
   }
 
@@ -127,7 +119,7 @@ export default function DemoSlide({ slide, lang }) {
               </div>
               <div className="log">
                 {entries.length === 0
-                  ? <span className="log-placeholder">{t('Click a button to run the live demo.', 'Hacé clic en un botón para ejecutar el demo.')}</span>
+                  ? <span className="log-placeholder">Hacé clic en un botón para ejecutar el demo.</span>
                   : entries.map((e, i) => (
                     <div key={i} className="log-entry">
                       <span className="log-ts">{e.ts}</span>

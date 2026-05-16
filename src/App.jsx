@@ -5,7 +5,6 @@ import Slide from './components/Slide.jsx';
 
 export default function App() {
   const [current, setCurrent] = useState(0);
-  const [lang, setLang] = useState('en');
 
   const navigate = useCallback((dir) => {
     setCurrent((c) => Math.max(0, Math.min(slides.length - 1, c + dir)));
@@ -20,15 +19,11 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey);
   }, [navigate]);
 
-  const slide = { ...slides[current], ...slides[current][lang] };
-
   return (
     <div className="presentation">
       <Topbar
         current={current}
         total={slides.length}
-        lang={lang}
-        onLang={setLang}
         onPrev={() => navigate(-1)}
         onNext={() => navigate(1)}
       />
@@ -39,7 +34,7 @@ export default function App() {
         />
       </div>
       <div className="slide-area">
-        <Slide key={current} slide={slide} lang={lang} />
+        <Slide key={current} slide={slides[current]} />
       </div>
       <span className="keyboard-hint">← → to navigate</span>
     </div>
