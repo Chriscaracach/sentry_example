@@ -1,0 +1,14 @@
+{
+  "name": "sentry-example",
+  "version": "1.0.0",
+  "description": "Minimal Sentry demo: Express backend + vanilla JS frontend",
+  "main": "server.js",
+  "scripts": {
+    "start": "bun run server.js"
+  },
+  "dependencies": {
+    "@sentry/node": "^8",
+    "express": "^4",
+    "dotenv": "^16"
+  }
+}

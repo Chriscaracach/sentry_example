@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sentry Demo</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      padding: 2rem;
+    }
+
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .subtitle { color: #8b949e; font-size: 0.9rem; margin-bottom: 2rem; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+
+    .card h2 { font-size: 0.95rem; margin-bottom: 0.4rem; color: #58a6ff; }
+    .card p { font-size: 0.82rem; color: #8b949e; margin-bottom: 1rem; line-height: 1.4; }
+
+    button {
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #e6edf3;
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.15s;
+    }
+    button:hover { background: #30363d; }
+    button.danger { border-color: #f85149; color: #f85149; }
+    button.danger:hover { background: #3d1c1c; }
+
+    #log {
+      margin-top: 2rem;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.8rem;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    #log .entry { padding: 0.2rem 0; border-bottom: 1px solid #21262d; }
+    #log .entry:last-child { border-bottom: none; }
+    #log .ts { color: #8b949e; margin-right: 0.5rem; }
+    #log .ok { color: #3fb950; }
+    #log .err { color: #f85149; }
+    #log .warn { color: #e3b341; }
+    #log .info { color: #58a6ff; }
+
+    .user-section { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+    .user-section input {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      color: #e6edf3;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.85rem;
+      width: 160px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sentry Demo</h1>
+  <p class="subtitle">Each button triggers a different type of Sentry event. Check your Sentry dashboard after clicking.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h2>User Context</h2>
+      <p>Set user info so Sentry attaches it to every subsequent event.</p>
+      <div class="user-section">
+        <input id="username" type="text" placeholder="Username" value="alice" />
+        <button onclick="setUser()">Set User</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Fetch Users (normal)</h2>
+      <p>A successful API call. Sentry records breadcrumbs for the request.</p>
+      <button onclick="fetchUsers()">Fetch Users</button>
+    </div>
+
+    <div class="card">
+      <h2>Unhandled JS Error</h2>
+      <p>Throws an exception that is NOT caught — Sentry's global handler captures it automatically.</p>
+      <button class="danger" onclick="triggerUnhandledError()">Throw Unhandled Error</button>
+    </div>
+
+    <div class="card">
+      <h2>Handled JS Error</h2>
+      <p>Wraps an operation in try/catch and calls <code>Sentry.captureException()</code> explicitly.</p>
+      <button onclick="triggerHandledError()">Capture Handled Error</button>
+    </div>
+
+    <div class="card">
+      <h2>Server Crash</h2>
+      <p>Calls <code>/api/crash</code> — the server throws, Sentry's Express middleware captures it.</p>
+      <button class="danger" onclick="triggerServerCrash()">Crash the Server</button>
+    </div>
+
+    <div class="card">
+      <h2>Server Handled Error</h2>
+      <p>Server catches the error internally and reports it via <code>Sentry.captureException()</code>.</p>
+      <button onclick="triggerServerHandledError()">Server Handled Error</button>
+    </div>
+
+    <div class="card">
+      <h2>Slow Endpoint</h2>
+      <p>Calls <code>/api/slow</code> which runs a traced span — visible in Sentry's performance view.</p>
+      <button onclick="triggerSlowEndpoint()">Call Slow Endpoint</button>
+    </div>
+
+    <div class="card">
+      <h2>Custom Message</h2>
+      <p>Sends a custom <code>Sentry.captureMessage()</code> from the frontend.</p>
+      <button onclick="captureCustomMessage()">Send Custom Message</button>
+    </div>
+  </div>
+
+  <div id="log"><div class="entry"><span class="ts">--:--:--</span><span class="info">Ready. Click a button to trigger a Sentry event.</span></div></div>
+
+  <!-- Sentry Browser SDK -->
+  <script src="https://browser.sentry-cdn.com/8.51.0/bundle.tracing.min.js" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+</body>
+</html>
