@@ -194,6 +194,79 @@
       color: var(--muted);
     }
 
+    /* Speaker slide */
+    .speaker-card {
+      display: flex;
+      align-items: center;
+      gap: 3.5rem;
+    }
+
+    .photo-placeholder {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 2px dashed var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      background: var(--surface);
+    }
+
+    .speaker-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      text-align: left;
+    }
+
+    .speaker-eyebrow {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .speaker-name {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .speaker-role  { font-size: 1rem; color: var(--muted); }
+    .speaker-company { font-size: 0.9rem; color: var(--muted); }
+
+    .speaker-divider {
+      width: 40px;
+      height: 2px;
+      background: var(--border);
+      margin: 0.5rem 0;
+    }
+
+    .speaker-bio {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.6;
+      max-width: 380px;
+      font-style: italic;
+    }
+
+    .speaker-handle {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-family: monospace;
+      margin-top: 0.25rem;
+    }
+
+    .ph { opacity: 0.35; }
+
     .keyboard-hint {
       position: fixed;
       bottom: 1rem;

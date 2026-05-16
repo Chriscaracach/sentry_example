@@ -22,6 +22,11 @@ function t(en, es) {
 
 const slides = [
   {
+    type: "speaker",
+    en: { eyebrow: "About the speaker" },
+    es: { eyebrow: "Sobre el ponente" },
+  },
+  {
     type: "intro",
     en: {
       title: "Observability\nfor the Modern Web",
@@ -326,6 +331,31 @@ function render() {
   progressFill.style.width = `${((current + 1) / slides.length) * 100}%`;
   prevBtn.disabled         = current === 0;
   nextBtn.disabled         = current === slides.length - 1;
+
+  if (slide.type === "speaker") {
+    slideArea.innerHTML = `
+      <div class="slide centered">
+        <div class="speaker-card">
+          <div class="photo-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.4">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+            </svg>
+            <span>Your photo</span>
+          </div>
+          <div class="speaker-info">
+            <p class="speaker-eyebrow">${slide.eyebrow}</p>
+            <h1 class="speaker-name ph">[Your Name]</h1>
+            <p class="speaker-role ph">[Your Role / Title]</p>
+            <p class="speaker-company ph">[Your Company]</p>
+            <div class="speaker-divider"></div>
+            <p class="speaker-bio ph">[A short bio or tagline that says something about you]</p>
+            <p class="speaker-handle ph">@[yourhandle]</p>
+          </div>
+        </div>
+      </div>`;
+    return;
+  }
 
   if (slide.type === "intro") {
     slideArea.innerHTML = `
