@@ -15,11 +15,6 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-// Expose the frontend DSN so the HTML page can pick it up
-app.get("/config", (req, res) => {
-  res.json({ sentryDsn: process.env.SENTRY_DSN_FRONTEND });
-});
-
 // --- Normal endpoint ---
 app.get("/api/users", (req, res) => {
   Sentry.addBreadcrumb({ category: "api", message: "Fetched user list", level: "info" });

@@ -1,17 +1,13 @@
-// Fetch the DSN from the server so it doesn't have to be hardcoded in the HTML
-fetch("/config")
-  .then((r) => r.json())
-  .then(({ sentryDsn }) => {
-    Sentry.init({
-      dsn: sentryDsn,
-      tracesSampleRate: 1.0,
-      environment: "development",
-      // Capture breadcrumbs for fetch calls and console output automatically
-      integrations: [Sentry.browserTracingIntegration()],
-    });
-    log("Sentry initialized", "info");
-  })
-  .catch(() => log("Could not load Sentry DSN from /config", "err"));
+const SENTRY_DSN = "https://e98b4e112484db52c7424038d16bf001@o4511401575186432.ingest.us.sentry.io/4511401596289025";
+
+Sentry.init({
+  dsn: SENTRY_DSN,
+  tracesSampleRate: 1.0,
+  environment: "development",
+  integrations: [Sentry.browserTracingIntegration()],
+});
+
+log("Sentry initialized", "info");
 
 // --- Logging UI ---
 
