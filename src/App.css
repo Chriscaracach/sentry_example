@@ -229,12 +229,12 @@ button.danger:hover { background: var(--danger-dim); }
 }
 
 .speaker-name    { font-size: 3.2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
-.speaker-role    { font-size: 1.25rem; color: var(--muted); }
-.speaker-company { font-size: 1.1rem; color: var(--muted); }
+.speaker-role    { font-size: 1.25rem; color: var(--text); }
+.speaker-company { font-size: 1.1rem; color: var(--text); }
 
 .speaker-divider { width: 40px; height: 2px; background: var(--border); margin: 0.5rem 0; }
 
 .speaker-bio    { font-size: 1.1rem; line-height: 1.6; max-width: 420px; font-style: italic; }
-.speaker-handle { font-size: 1rem; color: var(--muted); font-family: monospace; margin-top: 0.25rem; }
+.speaker-handle { font-size: 1rem; color: var(--text); font-family: monospace; margin-top: 0.25rem; }
 
 .ph { opacity: 0.35; }
