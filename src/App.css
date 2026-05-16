@@ -15,6 +15,7 @@
   --blue: #2563eb;
 }
 
+html { font-size: 150%; }
 html, body, #root { height: 100%; overflow: hidden; }
 
 body {
