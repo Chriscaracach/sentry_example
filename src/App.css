@@ -130,7 +130,13 @@ h2 { font-size: 2.8rem; font-weight: 700; line-height: 1.1; }
   min-height: 0;
   overflow: auto;
   border-radius: 8px;
-  font-size: 0.82rem;
+}
+
+.code-block pre,
+.code-block code,
+.code-block span {
+  font-size: 1.1rem !important;
+  line-height: 1.6 !important;
 }
 
 /* ── Demo area ── */
@@ -194,8 +200,8 @@ button.danger:hover { background: var(--danger-dim); }
 .speaker-card { display: flex; align-items: center; gap: 3.5rem; }
 
 .speaker-photo {
-  width: 260px;
-  height: 260px;
+  width: 420px;
+  height: 420px;
   border-radius: 50%;
   background-image: url('/assets/chris.jpeg');
   background-size: cover;
