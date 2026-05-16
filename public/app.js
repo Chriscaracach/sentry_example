@@ -336,7 +336,7 @@ function render() {
     slideArea.innerHTML = `
       <div class="slide centered">
         <div class="speaker-card">
-          <img src="/assets/chris.jpeg" class="speaker-photo" alt="Speaker photo" />
+          <div class="speaker-photo"></div>
           <div class="speaker-info">
             <p class="speaker-eyebrow">${slide.eyebrow}</p>
             <h1 class="speaker-name ph">[Your Name]</h1>
