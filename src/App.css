@@ -194,8 +194,8 @@ button.danger:hover { background: var(--danger-dim); }
 .speaker-card { display: flex; align-items: center; gap: 3.5rem; }
 
 .speaker-photo {
-  width: 180px;
-  height: 180px;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
   background-image: url('/assets/chris.jpeg');
   background-size: cover;
