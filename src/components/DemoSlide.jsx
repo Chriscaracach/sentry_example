@@ -106,7 +106,7 @@ export default function DemoSlide({ slide, lang }) {
               <SyntaxHighlighter
                 language="javascript"
                 style={vscDarkPlus}
-                customStyle={{ margin: 0, borderRadius: '8px', fontSize: '0.82rem', lineHeight: '1.55' }}
+                customStyle={{ margin: 0, borderRadius: '8px', fontSize: '0.95rem', lineHeight: '1.55' }}
               >
                 {slide.code}
               </SyntaxHighlighter>
