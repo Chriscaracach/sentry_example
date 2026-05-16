@@ -1,14 +1,21 @@
 {
   "name": "sentry-example",
   "version": "1.0.0",
-  "description": "Minimal Sentry demo: Express backend + vanilla JS frontend",
-  "main": "server.js",
+  "description": "Sentry demo: React + Vite",
+  "type": "module",
   "scripts": {
-    "start": "bun run server.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@sentry/node": "^8",
-    "express": "^4",
-    "dotenv": "^16"
+    "@sentry/react": "^8",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-syntax-highlighter": "^15"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4",
+    "vite": "^5"
   }
 }
