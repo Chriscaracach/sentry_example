@@ -14,7 +14,6 @@ export default function SpeakerSlide({ slide }) {
             Programación de Córdoba. Profesor de música. Músico. Me encanta
             pararme al frente de gente y hablar de cosas
           </p>
-          <p className="speaker-handle">@christiancaracach</p>
         </div>
       </div>
     </div>
