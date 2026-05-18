@@ -1,25 +1,36 @@
 export const slides = [
   {
+    type: "title",
+    title: "Sentry",
+  },
+  {
     type: "speaker",
     eyebrow: "Sobre mí",
   },
   {
-    type: "intro",
-    title: "Observabilidad",
-    description:
-      "En producción, las cosas fallan en silencio. Los usuarios se van sin decir una palabra. Sentry te da visibilidad completa sobre qué está fallando, quién fue afectado y qué lo causó.",
-    chips: [
-      "Captura automática de errores",
-      "Contexto completo del usuario",
-      "Frontend + backend",
+    type: "companies",
+    eyebrow: "",
+    images: [
+      "/assets/tiny.png",
+      "/assets/tiny2.png",
+      "/assets/cit.png",
+      "/assets/cit2.png",
     ],
+  },
+  {
+    type: "fullimage",
+    image: "/assets/meme.png",
+  },
+  {
+    type: "fullimage",
+    image: "/assets/sentry.png",
   },
   {
     concept: "Sentry.init()",
     title: "Configuración",
     description: "Una sola llamada init. Con eso, Sentry empieza a observar.",
     points: [
-      "init() configura el DSN, el sample rate y las integraciones",
+      "init() configura el DSN(Data Source Name), el sample rate y las integraciones",
       "browserTracingIntegration rastrea fetch y navegación automáticamente",
       "ErrorBoundary captura errores de render y los reporta a Sentry",
     ],
@@ -151,33 +162,6 @@ Sentry.setUser({
 // Sentry event timeline.`,
   },
   {
-    concept: "Sentry.startSpan()",
-    title: "Monitoreo de Performance",
-    description:
-      "Más allá de los errores. Envolvé operaciones lentas en un span — aparecen como un waterfall en la pestaña de Performance.",
-    points: [
-      "Los spans se agrupan en transacciones para una traza completa",
-      "Funciona en frontend y backend (rastreo distribuido)",
-    ],
-    actions: [
-      {
-        label: "Ejecutar operación lenta (~1500ms)",
-        fn: "triggerSlowOperation",
-      },
-    ],
-    code: `await Sentry.startSpan(
-  { name: "db-query", op: "db.query" },
-  async () => {
-
-    // This takes ~1500ms.
-    // Sentry records it as a named span
-    // inside the current transaction.
-    await slowDatabaseQuery();
-
-  }
-);`,
-  },
-  {
     concept: "Alertas",
     title: "Alertas",
     description:
@@ -200,5 +184,28 @@ Sentry.captureMessage(
 // → Si error_rate > 5% en 10 min → Slack
 // → Si p95 latency > 2000ms → PagerDuty
 // → Nuevo error en producción → Email`,
+  },
+
+  {
+    type: "fullimage",
+    image: "/assets/slack1.jpeg",
+  },
+  {
+    type: "fullimage",
+    image: "/assets/slack2.jpeg",
+  },
+  {
+    type: "fullimage",
+    image: "/assets/slack3.jpeg",
+  },
+  {
+    type: "fullimage",
+    image: "/assets/message.jpeg",
+  },
+
+  {
+    type: "thanks",
+    subtitle: "¿Preguntas?",
+    handle: "",
   },
 ];
