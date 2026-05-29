@@ -3,7 +3,7 @@ export default function Topbar({ current, total, onPrev, onNext }) {
     <header className="topbar">
       <div className="logo">
         <div className="logo-dot" />
-        Sentry — Live Demo
+        Observabilidad en JS
       </div>
       <div className="nav-controls">
         <span className="counter">{current + 1} / {total}</span>

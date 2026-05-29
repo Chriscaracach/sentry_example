@@ -62,7 +62,7 @@ export default function DemoSlide({ slide }) {
 
   function setUserAndError() {
     Sentry.setUser({ username: "alice", email: "alice@example.com" });
-    log("Usuario: alice — lanzando error en 300ms...", "info");
+    log("Usuario: alice - lanzando error en 300ms...", "info");
     setTimeout(() => {
       log("Error lanzado", "warn");
       throw new Error("Error attributed to alice (demo)");
@@ -78,7 +78,7 @@ export default function DemoSlide({ slide }) {
     log("Breadcrumb agregado. Buscando usuarios...", "info");
     const users = await fetchUsers();
     log(
-      `${users.length} usuarios obtenidos. Hacé clic en el Paso 2 — el error llevará este breadcrumb.`,
+      `${users.length} usuarios obtenidos. Hacé clic en el Paso 2 - el error llevará este breadcrumb.`,
       "ok",
     );
   }
@@ -91,7 +91,7 @@ export default function DemoSlide({ slide }) {
       async () => {
         await simulateSlowOperation();
         log(
-          `Listo en ${Date.now() - start}ms — revisá la pestaña Performance en Sentry`,
+          `Listo en ${Date.now() - start}ms - revisá la pestaña Performance en Sentry`,
           "ok",
         );
       },
@@ -107,6 +107,21 @@ export default function DemoSlide({ slide }) {
     addBreadcrumbAndFetch,
     triggerSlowOperation,
   };
+
+  if (slide.centered) {
+    return (
+      <div className="slide slide-centered-content">
+        {slide.concept && <span className="concept-tag">{slide.concept}</span>}
+        <h2>{slide.title}</h2>
+        {slide.description && <p className="description">{slide.description}</p>}
+        <ul className="points centered-points">
+          {(slide.points || []).map((p) => (
+            <li key={p}>{p}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 
   return (
     <div className="slide">

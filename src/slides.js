@@ -1,7 +1,8 @@
 export const slides = [
   {
     type: "title",
-    title: "Sentry",
+    title: "Observabilidad en JS",
+    subtitle: "O cómo hacer que te feliciten por romper producción",
   },
   {
     type: "speaker",
@@ -18,12 +19,75 @@ export const slides = [
     ],
   },
   {
+    type: "code",
+    code: `// ❌ Sin observabilidad
+try {
+  await fetchData(userId);
+} catch (err) {
+  logError(err)
+}`,
+  },
+  {
+    type: "code",
+    code: `// ✅ Con observabilidad
+try {
+  await fetchData(userId);
+} catch (err) {
+  logError(err)
+  reportToMonitoringTool(err)
+}`,
+  },
+  {
     type: "fullimage",
     image: "/assets/meme.png",
   },
   {
-    type: "fullimage",
-    image: "/assets/sentry.png",
+    type: "pillars",
+    title: "Los tres pilares de la observabilidad",
+    pillars: [
+      {
+        name: "Logs",
+        description: "Registros de eventos - qué pasó, cuándo y con qué datos.",
+        examples: [
+          "Structured logging con contexto",
+          "Niveles: info, warn, error, fatal",
+          "Quién, qué, cuándo y con qué input",
+        ],
+      },
+      {
+        name: "Métricas",
+        description:
+          "Números en el tiempo - tasa de errores, latencia, disponibilidad.",
+        examples: [
+          "Tasa de errores (%)",
+          "Latencia: p50, p95, p99",
+          "Uptime y disponibilidad",
+        ],
+      },
+      {
+        name: "Trazas",
+        description:
+          "Flujo de una operación - de dónde vino, qué llamó, dónde falló.",
+        examples: [
+          "Request spans end-to-end",
+          "Breadcrumbs de acciones del usuario",
+          "Distributed tracing entre servicios",
+        ],
+      },
+    ],
+  },
+  {
+    centered: true,
+    title: "¿Qué es Sentry?",
+    description:
+      "Una plataforma de monitoreo que captura errores, trazas y contexto de usuario en tiempo real, sin configuración adicional.",
+    points: [
+      "SDK que se instala en tu app (browser, Node, mobile y más)",
+      "Captura errores automáticamente y los agrupa por causa raíz",
+      "Muestra stack trace, usuario afectado, breadcrumbs y contexto completo",
+      "Envía alertas a Slack, email o PagerDuty cuando algo sale mal",
+    ],
+    actions: [],
   },
   {
     concept: "Sentry.init()",
@@ -115,7 +179,7 @@ load(); // Sentry captures this`,
     description:
       "Adjuntá identidad a cada evento. Sabé exactamente quién fue afectado y con qué frecuencia.",
     points: [
-      "Llamalo una vez después del login — se aplica a todos los eventos siguientes",
+      "Llamalo una vez después del login - se aplica a todos los eventos siguientes",
       "Filtrá y buscá eventos por usuario en el dashboard",
     ],
     actions: [
@@ -142,11 +206,11 @@ Sentry.setUser({
     ],
     actions: [
       {
-        label: "Paso 1 — Agregar breadcrumb y hacer fetch",
+        label: "Paso 1 - Agregar breadcrumb y hacer fetch",
         fn: "addBreadcrumbAndFetch",
       },
       {
-        label: "Paso 2 — Lanzar error",
+        label: "Paso 2 - Lanzar error",
         fn: "throwUnhandledError",
         danger: true,
       },
@@ -170,7 +234,7 @@ Sentry.setUser({
       "Alertas por tasa de errores: si el 5% de las requests fallan en 10 min, te avisa",
       "Alertas de performance: si el p95 de latencia supera 2s, se dispara",
       "Canales: Slack, email, PagerDuty, webhooks y más",
-      "También podés configurar alertas por ausencia de eventos — si algo deja de pasar",
+      "También podés configurar alertas por ausencia de eventos - si algo deja de pasar",
     ],
     actions: [],
     code: `// El nivel de severidad influye en las alertas

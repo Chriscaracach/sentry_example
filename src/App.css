@@ -518,6 +518,105 @@ button.danger:hover {
     width: 100%;
 }
 
+/* ── Centered demo slide ── */
+
+.slide.slide-centered-content {
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.centered-points {
+  text-align: left;
+  max-width: 680px;
+}
+
+/* ── Pillars slide ── */
+
+.slide.pillars-slide {
+  gap: 2rem;
+}
+
+.pillars-heading {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.5rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.pillar-col {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pillar-cap {
+  background: var(--accent);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.pillar-name {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.pillar-shaft {
+  flex: 1;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--accent-dim);
+  border-left: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+.pillar-description {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.pillar-examples {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pillar-examples li {
+  font-size: 1rem;
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.pillar-examples li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.pillar-base {
+  height: 14px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
 /* ── Thanks slide ── */
 
 .thanks-content {

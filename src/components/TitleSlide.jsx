@@ -3,9 +3,9 @@ export default function TitleSlide({ slide }) {
     <div className="slide centered">
       <div className="title-slide-content">
         <h1 className="title-slide-heading">{slide.title}</h1>
-        <i className="description">
-          O "cómo hacer que te feliciten por romper producción"
-        </i>
+        {slide.subtitle && (
+          <i className="description">{slide.subtitle}</i>
+        )}
         <p className="title-slide-name">Christian Caracach</p>
       </div>
     </div>
